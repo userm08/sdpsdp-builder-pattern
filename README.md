@@ -37,3 +37,17 @@ Car{brand='BMW', model='X5', engine='3.0L', color='Black', sunroof=true}
 
 Sports car:
 Car{brand='Porsche', model='911', engine='4.0L', color='Red', sunroof=false}
+## UML Class Diagram
+
+The UML class diagram shows the structure of the Builder Pattern implementation.
+
+The main roles are:
+
+- `Car` - Product
+- `CarBuilder` - Builder
+- `LuxuryCarBuilder` - Concrete Builder
+- `SportsCarBuilder` - Concrete Builder
+- `CarDirector` - Director
+- `Main` - Client
+
+The diagram source is available in `diagram.puml`.
