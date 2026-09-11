@@ -1,0 +1,71 @@
+@startuml
+
+interface CarBuilder {
+    +setBrand(brand: String): CarBuilder
+    +setModel(model: String): CarBuilder
+    +setEngine(engine: String): CarBuilder
+    +setColor(color: String): CarBuilder
+    +setSunroof(sunroof: boolean): CarBuilder
+    +build(): Car
+}
+
+abstract class BaseCarBuilder {
+    #brand: String
+    #model: String
+    #engine: String
+    #color: String
+    #sunroof: boolean
+
+    +setBrand(brand: String): CarBuilder
+    +setModel(model: String): CarBuilder
+    +setEngine(engine: String): CarBuilder
+    +setColor(color: String): CarBuilder
+    +setSunroof(sunroof: boolean): CarBuilder
+    #validate(): void
+}
+
+class LuxuryCarBuilder {
+    +build(): Car
+}
+
+class SportsCarBuilder {
+    +build(): Car
+}
+
+class Car {
+    -brand: String
+    -model: String
+    -engine: String
+    -color: String
+    -sunroof: boolean
+
+    +getBrand(): String
+    +getModel(): String
+    +getEngine(): String
+    +getColor(): String
+    +hasSunroof(): boolean
+    +toString(): String
+}
+
+class CarDirector {
+    +buildLuxuryCar(builder: CarBuilder): Car
+    +buildSportsCar(builder: CarBuilder): Car
+}
+
+class Main {
+    +main(args: String[]): void
+}
+
+BaseCarBuilder ..|> CarBuilder
+LuxuryCarBuilder --|> BaseCarBuilder
+SportsCarBuilder --|> BaseCarBuilder
+
+CarBuilder ..> Car : builds
+CarDirector ..> CarBuilder : uses
+CarDirector ..> Car : creates
+
+Main ..> CarDirector : uses
+Main ..> LuxuryCarBuilder : creates
+Main ..> SportsCarBuilder : creates
+
+@enduml
